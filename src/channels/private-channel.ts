@@ -61,7 +61,7 @@ export class PrivateChannel {
         }
 
         if (this.options.devMode) {
-            Log.error(`[${new Date().toISOString()}] - Preparing authentication request to: ${authHostSelected}`);
+            Log.info(`[${new Date().toISOString()}] - Preparing authentication request to: ${authHostSelected}`);
         }
 
         return authHostSelected;
