@@ -1,6 +1,6 @@
 # Other files #
 ################
-examples
+#examples
 Dockerfile
 dist/
 node_modules/
@@ -15,7 +15,7 @@ npm-debug.log
 .gitlab-ci.yml
 hooks
 #README.md
-#CHANGELOG.md
+CHANGELOG.md
 
 # IDE and editor specific files #
 #################################
