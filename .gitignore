@@ -1,0 +1,43 @@
+# Other files #
+################
+examples
+Dockerfile
+dist/
+node_modules/
+npm-debug.log
+
+# User specific & automatically generated files #
+#################################################
+*.log
+#*.md
+.travis.yml
+.github
+.gitlab-ci.yml
+hooks
+#README.md
+#CHANGELOG.md
+
+# IDE and editor specific files #
+#################################
+nbproject
+.idea
+.vscode
+#.editorconfig
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Git config #
+##############
+.git
+#.gitignore
+.gitattributes
+
