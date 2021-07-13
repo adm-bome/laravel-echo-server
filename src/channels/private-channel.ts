@@ -21,7 +21,7 @@ export class PrivateChannel {
      */
     authenticate(socket: any, data: any): Promise<any> {
         let options = {
-            url: this.authHost(socket) + this.options.authEndpoint,
+            url: this.authHost(socket) + this.authEndpoint(data),
             form: { channel_name: data.channel },
             headers: (data.auth && data.auth.headers) ? data.auth.headers : {},
             rejectUnauthorized: false
@@ -57,7 +57,7 @@ export class PrivateChannel {
                     authHostSelected = `${referer.protocol}//${referer.host}`;
                     break;
                 }
-            };
+            }
         }
 
         if (this.options.devMode) {
@@ -65,6 +65,19 @@ export class PrivateChannel {
         }
 
         return authHostSelected;
+    }
+
+    /**
+     * Prefer the auth endpoint given by the client, fallback to the default options
+     */
+    protected authEndpoint(data: any) {
+        let authEndpoint = (data.auth && data.auth.endpoint) ? data.auth.endpoint : this.options.authEndpoint;
+
+        if (this.options.devMode) {
+            Log.info(`[${new Date().toISOString()}] - Using authentication endpoint: ${authEndpoint}`);
+        }
+
+        return authEndpoint
     }
 
     /**
@@ -82,7 +95,6 @@ export class PrivateChannel {
     protected serverRequest(socket: any, options: any): Promise<any> {
         return new Promise<any>((resolve, reject) => {
             options.headers = this.prepareHeaders(socket, options);
-            let body;
 
             this.request.post(options, (error, response, body, next) => {
                 if (error) {
