@@ -108,7 +108,13 @@ export class Channel {
         this.private.authenticate(socket, data).then(res => {
             socket.join(data.channel);
 
+            if (this.options.devMode) {
+                var jsonData = JSON.stringify({ data, res })
+                Log.info(`: ${jsonData}`)
+            }
+
             if (this.isPresence(data.channel)) {
+
                 var member = res.channel_data;
                 try {
                     member = JSON.parse(res.channel_data);
