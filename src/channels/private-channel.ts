@@ -97,6 +97,12 @@ export class PrivateChannel {
             options.headers = this.prepareHeaders(socket, options);
 
             this.request.post(options, (error, response, body, next) => {
+
+                if (this.options.devMode) {
+                    var jsonData = JSON.stringify({ options, response, error, body,  })
+                    Log.info(`[${new Date().toISOString()}] - : ${jsonData}`)
+                }
+
                 if (error) {
                     if (this.options.devMode) {
                         Log.error(`[${new Date().toISOString()}] - Error authenticating ${socket.id} for ${options.form.channel_name}`);

@@ -110,7 +110,7 @@ export class Channel {
 
             if (this.options.devMode) {
                 var jsonData = JSON.stringify({ data, res })
-                Log.info(`: ${jsonData}`)
+                Log.info(`[${new Date().toISOString()}] - : ${jsonData}`)
             }
 
             if (this.isPresence(data.channel)) {
